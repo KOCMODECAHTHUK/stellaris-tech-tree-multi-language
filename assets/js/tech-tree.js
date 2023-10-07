@@ -175,3 +175,29 @@ function load_tree() {
         setupLocalStorage();
     }
 }
+
+document.querySelector("#drop").onclick = function() {
+    document.getElementById("drop_down").classList.toggle("show");
+}
+
+// lang = ["en", "ru"]
+
+function setLang(language) {
+    alert("Выбран язык: " + language);
+    $.getJSON('localization/' + language + '.json', function(localizationData) {
+        // Обновите заголовок страницы
+        document.title = localizationData.header.title;
+
+        // Обновите текст в поисковом поле
+        $("#search_input").attr("placeholder", localizationData.header.search_placeholder);
+
+        // Обновите тексты для кнопок в коде и любой другой текст, который нужно локализовать
+
+        // Обновление текстов для кнопок в вашем коде
+        $(".float-Contents").each(function() {
+            var area = $(this).data('area'); // Например, 'physics'
+            var translatedText = localizationData.tech_tree[area];
+            $(this).text(translatedText);
+        });
+    });
+}
