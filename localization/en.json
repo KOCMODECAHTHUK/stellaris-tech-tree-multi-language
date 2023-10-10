@@ -1,0 +1,12 @@
+{
+    "header": {
+      "title": "My Wiki",
+      "search_placeholder": "Search..."
+    },
+    "tech_tree": {
+      "physics": "Physics",
+      "society": "Society",
+      "engineering": "Engineering",
+      "anomaly": "Anomaly"
+    }
+  }
