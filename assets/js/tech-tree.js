@@ -150,7 +150,7 @@ function load_tree() {
     research.forEach( area => {
         if('anomaly' !== area) {
             $.getJSON( area + '.json', function(jsonData) {
-                if(selectedLanguage !== "en") localizeData(jsonData, selectedLanguage);
+                if(selectedLanguage !== "english") OpenToLanguage(jsonData, selectedLanguage);
                 setup(jsonData);
                 _load(jsonData, area);
             });
