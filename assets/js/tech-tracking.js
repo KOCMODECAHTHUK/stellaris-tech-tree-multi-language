@@ -188,12 +188,6 @@ function findLists() {
                     loadListFromIndexedDB("Default List");
                 }
             })
-            $('#research_remove').on('click', function(event) {
-                event.preventDefault();
-                if($('#research_selection').val() && $.trim($('#research_selection').val()).length !== 0) {
-                    removeListFromIndexedDB( $('#research_selection').val() );
-                }
-            })
             $('.research').removeClass('hide');
         }
     };

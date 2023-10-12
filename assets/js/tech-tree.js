@@ -151,6 +151,7 @@ function load_tree() {
         if('anomaly' !== area) {
             $.getJSON( area + '.json', function(jsonData) {
                 if(selectedLanguage !== "english") OpenToLanguage(jsonData, selectedLanguage);
+                setup_search()
                 setup(jsonData);
                 _load(jsonData, area);
             });
