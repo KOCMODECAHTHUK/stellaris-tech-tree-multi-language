@@ -8,7 +8,7 @@ function init_nodestatus(area) {
         if(undefined === events || undefined === events.click) {
             $(this).on('click', function toggle_status() {
                 // Find chart for the research
-                if($(this).parent().hasClass('anomaly')) {
+                if($(this).parent().hasClass('anomalies')) {
                     if($(this).hasClass('active')) {
                         $(this).removeClass('active');
                         $(this).parent().removeClass('active');
@@ -232,7 +232,7 @@ function loadListFromIndexedDB(name) {
                     });
                 });
                 data.forEach(item => {
-                    if('anomaly' == item.area) {
+                    if('anomalies' == item.area) {
                         //TODO
                         $('#' + item.key + ' .div.node-status').addClass('active');
                     }

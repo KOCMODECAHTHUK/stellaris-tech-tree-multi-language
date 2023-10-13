@@ -351,13 +351,13 @@ div.fixed {
     z-index: 9999;
 }
 
-.anomaly {
+.anomalies {
     float:left;
     margin: 10px 10px 10px 10px;
     cursor: pointer;
 }
 
-.anomaly div.node-status {
+.anomalies div.node-status {
     margin-right: -2px;
     margin-top: -5px;]
 }

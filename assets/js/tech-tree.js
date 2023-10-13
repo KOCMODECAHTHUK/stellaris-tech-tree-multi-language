@@ -1,6 +1,6 @@
 'use strict';
 
-var research = ['physics', 'society', 'engineering', 'anomaly'];
+var research = ['physics', 'society', 'engineering', 'anomalies'];
 
 var config = {
     //container: '#tech-tree-',
@@ -42,7 +42,7 @@ function init_tooltips() {
                 $(el).attr('src',$(el).attr('data-src'));
                 
                 var tech = $(el)[0].classList[$(el)[0].classList.length-1];
-                if(!$('#' + tech).hasClass('anomaly')) {
+                if(!$('#' + tech).hasClass('anomalies')) {
                     var parent = $('#' + tech)[0];
                     if(parent !== undefined && parent.classList.length > 1)
                     $(el).addClass(parent.classList[2]);
@@ -148,27 +148,27 @@ function _load(jsonData, tree) {
 
 function load_tree() {
     research.forEach( area => {
-        if('anomaly' !== area) {
-            $.getJSON( area + '.json', function(jsonData) {
+        $.getJSON( area + '.json', function(jsonData) {
+                if('anomalies' !== area) {
                 if(selectedLanguage !== "english") OpenToLanguage(jsonData, selectedLanguage);
                 setup_search()
                 setup(jsonData);
                 _load(jsonData, area);
-            });
-        }
-    });
-    $.getJSON('anomalies.json', function(jsonData) {
-        // Event techs don't really need a Tree
-        $(jsonData).each(function(index, item) {
-            setup(item);
-            var e = $("<div>").html(item.innerHTML);
-            e.attr("id", item.key);
-            e.attr("class",item.HTMLclass)
-            e.addClass("node").addClass("tech").addClass("anomaly");
-            $('#tech-tree-anomalies').append(e);
+            } else {
+                $('#tech-tree-anomalies').empty();
+                if(selectedLanguage !== "english") OpenToLanguage(jsonData, selectedLanguage);
+                $(jsonData).each(function(index, item) {
+                    setup(item);
+                    var e = $("<div>").html(item.innerHTML);
+                    e.attr("id", item.key);
+                    e.attr("class",item.HTMLclass)
+                    e.addClass("node").addClass("tech").addClass("anomalies");
+                    $('#tech-tree-anomalies').append(e);
+                });
+                init_nodestatus('anomalies');
+                init_tooltips();
+            }
         });
-        init_nodestatus('anomalies');
-        init_tooltips();
     });
     if(window.indexedDB) {
         initDB();
